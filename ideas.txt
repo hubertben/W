@@ -1,0 +1,22 @@
+Words to use for Syntax:
+
+- while   : Looping           : Pretty obvious, but can be definied like a for loops as well
+- when    : If Statement      : when(a == b){...}
+- will    : Assignment        : will x = 6;
+- whole   : Class             : whole Network {...}
+- with    : Imports           : with math(.w)
+- width   : Length of List    : list.width;
+- waste   : Delete            : waste t0_holder;
+- write   : Print             : write("Hello, World!)
+- within  : In (list)         : when(l within list){...}
+- widget  : Functions         : widget lerp(x, a, b){...}
+- wont    : Not               : 5 wont= 4
+- whose   : List Function     : [1, 2, 4, 8, 16].whose(x, x <= 5) => [1, 2, 4];
+- wave    : Try:Catch         : ///
+
+Commands still needed: break, input... (there are more, I just cant think of them atm)
+
+File extention: .w (maybe .uu?)
+
+Compiler Name: wildfire
+https://hackernoon.com/building-your-own-programming-language-from-scratch
