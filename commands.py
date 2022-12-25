@@ -1,6 +1,4 @@
 
-
-
 class ADD:
     def __init__(self): pass
     def execute(self, a, b = 0): return a + b if type(a) == int else a[0] + a[1]
@@ -20,6 +18,16 @@ class DIV:
     def __init__(self): pass
     def execute(self, a, b = 0): return a / b if type(a) == int else a[0] / a[1]
     def __str__(self): return "DIV"
+
+class POW:
+    def __init__(self): pass
+    def execute(self, a, b = 0): return a ** b if type(a) == int else a[0] ** a[1]
+    def __str__(self): return "POW"
+
+class MOD:
+    def __init__(self): pass
+    def execute(self, a, b = 0): return ((a % b) == 0) if type(a) == int else ((a[0] % a[1]) == 0)
+    def __str__(self): return "MOD"
 
 class AND:
     def __init__(self): self.and_ = False
@@ -72,5 +80,8 @@ COMMANDS = {
     ISZERO: ["ISZERO", 1],
     EQUAL: ["EQUAL", 2],
     HASH: ["HASH", 1],
-    HASHP: ["HASHP", 1]
+    HASHP: ["HASHP", 1],
+    
+    POW: ["POW", 2],
+    MOD: ["MOD", 2]
 }

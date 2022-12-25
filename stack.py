@@ -47,7 +47,11 @@ class Stack:
     def display(self):
         print(" ----  Top of Stack  ---")
         for i in self.stack:
-            print("\t" + str(i))
+            if(i in COMMANDS):
+                l = COMMANDS[i][0]
+                print("  ", l)
+            else:
+                print("  ", i)
         print(" --- Bottom of Stack ---")
         return ""
 

@@ -7,13 +7,13 @@ class Constraint:
         self.stack = Stack(init = init)
 
     def printStacks(self, satisfier = []):
-        print("------------------------")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~")
         print("> Constraint")
         self.stack.display()
-        if(len(satisfier.stack.stack) != 0):
+        if(satisfier != []):
             print("\n> Satisfier")
             satisfier.stack.display()
-        print("------------------------")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~")
 
     def executeScript(self, satisfier, verbose = False):
         i = 0
@@ -56,8 +56,9 @@ class Constraint:
                 argsTemp.moveAll(args)
 
                 args = args.stack
-
-                print("ARGS:", args)
+                
+                if(verbose):
+                    print("ARGS:", args)
 
                 if(len(args) != COMMANDS[item][1]):
                     raise Exception("Constraint Script contains extra command")
@@ -66,7 +67,7 @@ class Constraint:
                 object_ = item
                 o = object_.execute(self = object_, a = args)
                 if(verbose):
-                    print("Executing:", str(object_), "on ARGS:", str(args), "->", o)
+                    print("\nExecuting:", str(COMMANDS[object_][0]), "on ARGS:", str(args), "->", o, "\n")
                 self.stack.addItem(o)
                   
             else:
@@ -75,13 +76,14 @@ class Constraint:
                     self.stack.addItem(item)
                     break
 
-                print("Non Command Item:", item)
+                if(verbose):
+                    print("Non Command Item:", item)
                 satisfier.stack.addItem(item)
             
             
-
-        print("Stack:", self.stack.stack)
-        print("Satisfier:", satisfier.stack.stack)
+        if(verbose):
+            print("Stack:", self.stack.stack)
+            print("Satisfier:", satisfier.stack.stack)
         return self.stack
 
 
@@ -100,10 +102,12 @@ class Satisfier:
 # c.executeScript(satisfier = s, verbose = True)
 
 
+
 # Numeric Example
 # c = Constraint([ADD, SUB, DIV])
 # s = Satisfier([400, 20, 30, 4])
 # c.executeScript(satisfier = s, verbose = True)
+
 
 
 # Logic Example
@@ -111,11 +115,38 @@ class Satisfier:
 # s = Satisfier([True, False])
 # c.executeScript(satisfier = s, verbose = True)
 
+
+
 # Hashing Example
-# i = 1
-# h = HASHP().execute(i)
-# c = Constraint([i, HASHP, EQUAL])
+
+# Password is input by user
+# password = 1234
+
+# h is computed when the user creates the account
+# h = HASHP().execute(password)
+
+# Check if password is correct
+# c = Constraint([password, HASHP, EQUAL])
 # s = Satisfier([h])
+# print(c.executeScript(satisfier = s, verbose = False).stack)
+
+
+
+# POW Example
+
+# s = 15
+# e = s ** 3
+
+# c = Constraint([3, POW, e, EQUAL])
+# s = Satisfier([s])
 # c.executeScript(satisfier = s, verbose = True)
 
 
+
+# MOD Example: Checks if the hash of p is even/odd
+
+# p = 27
+
+# c = Constraint([p, HASH, 2, MOD, 1, EQUAL])
+# s = Satisfier([])
+# c.executeScript(satisfier = s, verbose = True)
